@@ -101,9 +101,25 @@
     <hr>
 
     <!-- Contact Form -->
-    <h2 style="color:green;">Responses</h2>
-    <form>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6wanUWxQxf3ClsvvBxWmRXGZeD4wW1bVwERO88f9TW4fjZd6KI92bsX_9up7-6aqwrMIUVbF9kjpY/pubhtml?widget=true&amp;headers=false" width="100%" height="500"></iframe>
+    <h2 style="color:green;">Contact Me</h2>
+<div id="responses">Loading...</div>
+
+<script>
+async function loadResponses() {
+  const url = "https://script.google.com/macros/s/AKfycbwS1DU-NHz0HSFuOJnTSOd3F-lkcceARV3_K2h9wdvXQDtT_2hyOAtMjYqjQlyE9aWd/exec"; // from Apps Script
+  const response = await fetch(url);
+  const data = await response.json();
+
+  let html = "<table border='1'>";
+  data.forEach(row => {
+    html += "<tr>" + row.map(cell => `<td>${cell}</td>`).join("") + "</tr>";
+  });
+  html += "</table>";
+
+  document.getElementById("responses").innerHTML = html;
+}
+loadResponses();
+</script>
     
       <label>Name:</label><br>
       <input type="text" name="name" style="width:100%;"><br><br>
@@ -126,6 +142,7 @@
  
 </body>
 </html>
+
 
 
 
