@@ -102,24 +102,7 @@
 
     <!-- Contact Form -->
     <h2 style="color:green;">Contact Me</h2>
-<div id="responses">Loading...</div>
-
-<script>
-async function loadResponses() {
-  const url = "https://script.google.com/macros/s/AKfycbwS1DU-NHz0HSFuOJnTSOd3F-lkcceARV3_K2h9wdvXQDtT_2hyOAtMjYqjQlyE9aWd/exec"; // from Apps Script
-  const response = await fetch(url);
-  const data = await response.json();
-
-  let html = "<table border='1'>";
-  data.forEach(row => {
-    html += "<tr>" + row.map(cell => `<td>${cell}</td>`).join("") + "</tr>";
-  });
-  html += "</table>";
-
-  document.getElementById("responses").innerHTML = html;
-}
-loadResponses();
-</script>
+      <form>
     
       <label>Name:</label><br>
       <input type="text" name="name" style="width:100%;"><br><br>
@@ -142,6 +125,7 @@ loadResponses();
  
 </body>
 </html>
+
 
 
 
