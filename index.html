@@ -46,7 +46,6 @@
         <td>Hansraj College, University of Delhi</td>
         <td>2020 - 2023</td>
       </tr>
-      
     </table>
 
     <hr>
@@ -96,58 +95,59 @@
       <li>Diploma in Human Resources</li>
       <li>3rd position in Inter-School Bagpipe Band competition</li>
       <li>1st position in Zone-X district (North West “A”) Bagpipe Band</li>
-      <li>Event Leadership: UDHYAMSAGAR 2024, CSR & Sustainability 2025, Atal Janmashati Samvad 2024, Industrial Meet 2024, ABHYUDAYA 2025</li>\n    </ul>
+      <li>Event Leadership: UDHYAMSAGAR 2024, CSR & Sustainability 2025, Atal Janmashati Samvad 2024, Industrial Meet 2024, ABHYUDAYA 2025</li>
+    </ul>
 
     <hr>
 
     <!-- Contact Form -->
     <h2 style="color:green;">Contact Me</h2>
-      <form>
+    <form id="contact-form">
       <label>Name:</label><br>
-      <input type="text" name="name" style="width:100%;"><br><br>
+      <input type="text" name="name" required style="width:100%;"><br><br>
 
       <label>Email:</label><br>
-      <input type="email" name="email" style="width:100%;"><br><br>
+      <input type="email" name="email" required style="width:100%;"><br><br>
 
       <label>Message:</label><br>
-      <textarea rows="5" cols="40" style="width:100%;"></textarea><br><br>
+      <textarea name="message" rows="5" cols="40" required style="width:100%;"></textarea><br><br>
 
       <input type="submit" value="Send" style="background:darkred; color:white; padding:5px 15px;">
     </form>
-     <script>
-document.getElementById("Contact Me").addEventListener("submit", async function(e) {
-  e.preventDefault();
 
-  const formData = {
-    name: this.name.value,
-    email: this.email.value,
-    message: this.message.value
-  };
-
-  const response = await fetch("https://script.google.com/macros/s/AKfycbwS1DU-NHz0HSFuOJnTSOd3F-lkcceARV3_K2h9wdvXQDtT_2hyOAtMjYqjQlyE9aWd/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData)
-  });
-
-  document.getElementById("status").innerText = "✅ Response submitted!";
-  this.reset();
-});
-</script>
-    <hr>
+    <p id="status" style="color:green; font-weight:bold;"></p>
 
     <!-- Footer -->
     <p style="text-align:center;">&copy; 2025 Pulkita</p>
 
   </div>
- 
+
+  <!-- Script to connect to Google Sheet -->
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const formData = {
+        name: this.name.value,
+        email: this.email.value,
+        message: this.message.value
+      };
+
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbyMC4qjNGSpxOMaepYvx1hQxXnkDgecyymGyZ9TOAThNSsGrmAMpLV-sQko3YTDWZoF/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        document.getElementById("status").innerText = "✅ Response submitted successfully!";
+        this.reset();
+      } catch (error) {
+        document.getElementById("status").innerText = "❌ Error submitting response.";
+      }
+    });
+  </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
